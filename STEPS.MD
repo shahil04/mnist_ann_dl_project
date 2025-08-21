@@ -1,5 +1,11 @@
 
-hii
+
+Push to GitHub and redeploy.
+
+💡 Use opencv-python-headless instead of opencv-python — it works without GUI libs and avoids some errors.
+
+=================
+
 …or create a new repository on the command line
 echo "# mnist_ann_dl_project" >> README.md
 git init
