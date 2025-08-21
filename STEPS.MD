@@ -1,3 +1,5 @@
+
+hii
 …or create a new repository on the command line
 echo "# mnist_ann_dl_project" >> README.md
 git init
