@@ -23,16 +23,16 @@ def app():
         key="canvas",
     )
 
+    # Only proceed if something is drawn
     if canvas_result.image_data is not None:
-        img_array = np.array(canvas_result.image_data)
+        img = canvas_result.image_data
 
-        # Check if user actually drew something
-        if np.sum(img_array) > 0:
-            # Preprocess the image
-            img = cv2.cvtColor(img_array.astype('uint8'), cv2.COLOR_RGBA2GRAY)
+        # Avoid processing if nothing is drawn (all black pixels)
+        if np.sum(img) > 0:
+            img = cv2.cvtColor(img.astype('uint8'), cv2.COLOR_RGBA2GRAY)
             img = cv2.resize(img, (28, 28))
             img = img / 255.0
-            img = img.reshape(1, 784)  # Flatten for ANN input
+            img = img.reshape(1, 784)  # Flatten for ANN
 
             # Predict
             pred = model.predict(img)
@@ -40,18 +40,9 @@ def app():
 
             st.subheader(f"Predicted Digit: {pred_class}")
         else:
-            st.warning("✏️ Please draw a digit before predicting.")
+            st.warning("✏ Please draw a digit before prediction!")
 
 app()
-
-
-
-
-
-
-
-
-
 
 
 
